@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] internal int _maxHP;
-    private int _currentHP;
+    internal int _currentHP;
 
     [SerializeField] internal int _damage;
 
