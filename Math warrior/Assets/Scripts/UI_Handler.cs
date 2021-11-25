@@ -16,12 +16,17 @@ public class UI_Handler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _questionText;
 
     [SerializeField] private Animator _enemyUIAnimator;
-    public void DisplayEnemyStatus(Sprite _enemySprite, int _enemyHP, int _enemyDMG, string _enemyDescription)
+    public void SetEnemyStatus(Sprite _enemySprite, int _enemyHP, int _enemyDMG, string _enemyDescription)
     {
         _image.sprite = _enemySprite;
         _healthText.SetText(_enemyHP.ToString());
         _damageText.SetText(_enemyDMG.ToString());
         _descriptionText.SetText(_enemyDescription);
+    }
+
+    public void UpdateEnemyHP(int _enemyCurrentHP)
+    {
+        _healthText.SetText(_enemyCurrentHP.ToString());
     }
 
     public void PlayEnemyUIAnimation()

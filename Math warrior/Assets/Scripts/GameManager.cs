@@ -24,6 +24,6 @@ public class GameManager : MonoBehaviour
             if (_playerAnswer != _currentQuestionAnswer)
                 Debug.Log("Wrong answer!");
             else
-                _player.Attack();
+                _player.PlayAttackAnimation();
     }
 }
