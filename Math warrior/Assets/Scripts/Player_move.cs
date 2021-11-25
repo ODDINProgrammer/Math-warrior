@@ -17,11 +17,11 @@ public class Player_move : MonoBehaviour
 
     private void Update()
     {
-        if (_rb.velocity.magnitude >= 0.001f && _isMoving)
-            _animator.SetBool("isMoving", true);
-
         if (_isMoving)
+        {
+            _animator.SetBool("isMoving", true);
             transform.position += Vector3.right * _movingSpeed * Time.deltaTime;
+        }
     }
 
     public void StopPlayer()
