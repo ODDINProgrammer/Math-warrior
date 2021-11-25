@@ -15,15 +15,27 @@ public class GameManager : MonoBehaviour
 
     public void StartBattle()
     {
-        _currentQuestionAnswer = GetComponent<QuestionGeneration>().GenerateRandomResult();
+        _currentQuestionAnswer = GetComponent<QuestionGeneration>().GenerateRandomSumQuestion();
+    }
+
+    public void GenerateNewQuestion()
+    {
+        _currentQuestionAnswer = GetComponent<QuestionGeneration>().GenerateRandomSumQuestion();
     }
 
     public void CheckAnswer()
     {
         if (int.TryParse(_inputFieldText.GetComponent<Text>().text, out _playerAnswer))
+            //  WRONG
             if (_playerAnswer != _currentQuestionAnswer)
                 Debug.Log("Wrong answer!");
+
+            //  CORRECT
             else
+            {
                 _player.PlayAttackAnimation();
+                GetComponent<UI_Handler>().PlayQuestionUIAnimation();
+            }
+
     }
 }

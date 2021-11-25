@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
             _currentEnemy = collision.transform.GetComponent<Enemy>();
 
             _ui.SetEnemyStatus(_currentEnemy.GetComponentInChildren<SpriteRenderer>().sprite, _currentEnemy._currentHP, _currentEnemy._damage, _currentEnemy._description);
-            _ui.PlayEnemyUIAnimation();
+            _ui.PlayUIShowAnimation();
 
             _gameManager.StartBattle();
         }

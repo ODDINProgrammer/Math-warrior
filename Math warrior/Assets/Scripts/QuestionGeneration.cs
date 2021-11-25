@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class QuestionGeneration : MonoBehaviour
 {
-    public int GenerateRandomResult()
+    [SerializeField] private int _minNumber;
+    [SerializeField] private int _maxNumber;
+    public int GenerateRandomSumQuestion()
     {
-        int _rand1 = Random.Range(0, 100);
-        int _rand2 = Random.Range(0, 100);
+        int rand1 = Random.Range(_minNumber, _maxNumber + 1);
+        int rand2 = Random.Range(_minNumber, _maxNumber + 1);
 
-        GetComponent<UI_Handler>().DisplayQuestion(_rand1, _rand2);
-        return _rand1+_rand2;
+        GetComponent<UI_Handler>().DisplayQuestion(rand1, rand2);
+        return rand1 + rand2;
     }
 }

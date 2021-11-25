@@ -14,8 +14,11 @@ public class UI_Handler : MonoBehaviour
 
     [Header("Question")]
     [SerializeField] private TextMeshProUGUI _questionText;
+    [SerializeField] private InputField _questionInputField;
 
+    [Header("Animators")]
     [SerializeField] private Animator _enemyUIAnimator;
+    [SerializeField] private Animator _questionUIAnimator;
     public void SetEnemyStatus(Sprite _enemySprite, int _enemyHP, int _enemyDMG, string _enemyDescription)
     {
         _image.sprite = _enemySprite;
@@ -29,13 +32,21 @@ public class UI_Handler : MonoBehaviour
         _healthText.SetText(_enemyCurrentHP.ToString());
     }
 
-    public void PlayEnemyUIAnimation()
+    public void PlayUIShowAnimation()
     {
         _enemyUIAnimator.SetTrigger("Show");
+        _questionUIAnimator.SetTrigger("Show");
     }
+
+    public void PlayQuestionUIAnimation()
+    {
+        _questionUIAnimator.SetTrigger("GenerateQuestion");
+    }    
 
     public void DisplayQuestion(int value1, int value2)
     {
+        _questionInputField.Select();
+        _questionInputField.text = "";
         _questionText.SetText(value1 + " + " + value2);
     }
 }
