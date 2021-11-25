@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     [Header("Animator")]
     [SerializeField] private Animator _animator;
 
+    private void Start()
+    {
+        _currentHP = _maxHP;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.CompareTag("Enemy"))
@@ -32,6 +37,11 @@ public class Player : MonoBehaviour
 
             _gameManager.StartBattle();
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        _animator.SetTrigger("Win");
     }
 
     public void PlayAttackAnimation()

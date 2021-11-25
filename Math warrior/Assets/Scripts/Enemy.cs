@@ -28,5 +28,8 @@ public class Enemy : MonoBehaviour
         _currentHP -= _value;
         _animator.SetTrigger("Attacked");
         _gameManager.GetComponent<UI_Handler>().UpdateEnemyHP(_currentHP);
+
+        if (_currentHP <= 0)
+            Destroy(gameObject);
     }
 }

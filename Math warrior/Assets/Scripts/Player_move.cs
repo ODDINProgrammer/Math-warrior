@@ -29,4 +29,9 @@ public class Player_move : MonoBehaviour
         _isMoving = false;
         _animator.SetBool("isMoving", false);
     }
+
+    public void LetPlayerMove()
+    {
+        _isMoving = true;
+    }
 }
