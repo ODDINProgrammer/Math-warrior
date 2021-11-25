@@ -9,7 +9,9 @@ public class Player : MonoBehaviour
 
     private Enemy _currentEnemy;
 
-    [SerializeField] private UI_display_enemy_info _ui;
+    [SerializeField] private UI_Handler _ui;
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Animator _animator;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.CompareTag("Enemy"))
@@ -18,6 +20,14 @@ public class Player : MonoBehaviour
             _currentEnemy = collision.transform.GetComponent<Enemy>();
 
             _ui.DisplayEnemyStatus(_currentEnemy.GetComponentInChildren<SpriteRenderer>().sprite, _currentEnemy._currentHP, _currentEnemy._damage, _currentEnemy._description);
+            _ui.PlayEnemyUIAnimation();
+
+            _gameManager.StartBattle();
         }
+    }
+
+    public void Attack()
+    {
+        _animator.SetTrigger("Attack");
     }
 }

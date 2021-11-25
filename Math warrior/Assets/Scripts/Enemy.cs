@@ -9,6 +9,10 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] internal int _damage;
 
-
     [TextArea][SerializeField] internal string _description;
+
+    private void Start()
+    {
+        _currentHP = _maxHP;
+    }
 }
