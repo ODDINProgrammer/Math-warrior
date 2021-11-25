@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [Header("DMG")]
     [SerializeField] private int _damage;
 
-    private Enemy _currentEnemy;
+    internal Enemy _currentEnemy;
 
     [Header("Accessors")]
     [SerializeField] private UI_Handler _ui;
@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if(!_gameManager._isBattle)
         _animator.SetTrigger("Win");
     }
 

@@ -12,13 +12,21 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Player _player;
 
+    internal bool _isBattle = false;
 
     public void StartBattle()
     {
+        _isBattle = true;
         _currentQuestionAnswer = GetComponent<QuestionGeneration>().GenerateRandomSumQuestion();
     }
 
-    public void GenerateNewQuestion()
+    public void EndBattle()
+    {
+        _isBattle = false;
+        GetComponent<UI_Handler>().HideBattleUI();
+    }
+
+    public void NewQuestion()
     {
         _currentQuestionAnswer = GetComponent<QuestionGeneration>().GenerateRandomSumQuestion();
     }
@@ -28,14 +36,8 @@ public class GameManager : MonoBehaviour
         if (int.TryParse(_inputFieldText.GetComponent<Text>().text, out _playerAnswer))
             //  WRONG
             if (_playerAnswer != _currentQuestionAnswer)
-                Debug.Log("Wrong answer!");
+                return;
 
-            //  CORRECT
-            else
-            {
-                _player.PlayAttackAnimation();
-                GetComponent<UI_Handler>().PlayQuestionUIAnimation();
-            }
-
+        _player.PlayAttackAnimation();
     }
 }

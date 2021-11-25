@@ -9,6 +9,6 @@ public class Question_UI : MonoBehaviour
 
     public void GenerateNewQuestion()
     {
-        _gameManager.GenerateNewQuestion();
+        _gameManager.NewQuestion();
     }
 }

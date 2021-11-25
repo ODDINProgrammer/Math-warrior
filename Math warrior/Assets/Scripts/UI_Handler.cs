@@ -19,7 +19,7 @@ public class UI_Handler : MonoBehaviour
     [Header("Animators")]
     [SerializeField] private Animator _enemyUIAnimator;
     [SerializeField] private Animator _questionUIAnimator;
-    public void SetEnemyStatus(Sprite _enemySprite, int _enemyHP, int _enemyDMG, string _enemyDescription)
+    internal void SetEnemyStatus(Sprite _enemySprite, int _enemyHP, int _enemyDMG, string _enemyDescription)
     {
         _image.sprite = _enemySprite;
         _healthText.SetText(_enemyHP.ToString());
@@ -27,26 +27,32 @@ public class UI_Handler : MonoBehaviour
         _descriptionText.SetText(_enemyDescription);
     }
 
-    public void UpdateEnemyHP(int _enemyCurrentHP)
+    internal void UpdateEnemyHP(int _enemyCurrentHP)
     {
         _healthText.SetText(_enemyCurrentHP.ToString());
     }
 
-    public void PlayUIShowAnimation()
+    internal void PlayUIShowAnimation()
     {
         _enemyUIAnimator.SetTrigger("Show");
         _questionUIAnimator.SetTrigger("Show");
     }
 
-    public void PlayQuestionUIAnimation()
+    internal void PlayQuestionUIAnimation()
     {
         _questionUIAnimator.SetTrigger("GenerateQuestion");
-    }    
+    }
 
-    public void DisplayQuestion(int value1, int value2)
+    internal void DisplayQuestion(int value1, int value2)
     {
         _questionInputField.Select();
         _questionInputField.text = "";
         _questionText.SetText(value1 + " + " + value2);
+    }
+
+    internal void HideBattleUI()
+    {
+        _questionUIAnimator.SetTrigger("Hide");
+        _enemyUIAnimator.SetTrigger("Hide");
     }
 }

@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] internal int _damage;
 
-    [TextArea][SerializeField] internal string _description;
+    [TextArea] [SerializeField] internal string _description;
 
     [Header("Accessors")]
     [SerializeField] private GameManager _gameManager;
@@ -30,6 +30,12 @@ public class Enemy : MonoBehaviour
         _gameManager.GetComponent<UI_Handler>().UpdateEnemyHP(_currentHP);
 
         if (_currentHP <= 0)
+        {
+            _gameManager.EndBattle();
             Destroy(gameObject);
+        }
+        else
+            _gameManager.GetComponent<UI_Handler>().PlayQuestionUIAnimation();
+
     }
 }
