@@ -32,10 +32,15 @@ public class Enemy : MonoBehaviour
         if (_currentHP <= 0)
         {
             _gameManager.EndBattle();
-            Destroy(gameObject);
+            Invoke("DelayedDestroy", 0.2f);
         }
         else
             _gameManager.GetComponent<UI_Handler>().PlayQuestionUIAnimation();
 
+    }
+
+    private void DelayedDestroy()
+    {
+        Destroy(gameObject);
     }
 }

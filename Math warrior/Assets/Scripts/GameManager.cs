@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     {
         _isBattle = false;
         GetComponent<UI_Handler>().HideBattleUI();
+        _player.PlayWinAnimation();
     }
 
     public void NewQuestion()

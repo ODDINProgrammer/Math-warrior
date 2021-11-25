@@ -39,9 +39,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if(!_gameManager._isBattle)
+    internal void PlayWinAnimation()
+    { 
         _animator.SetTrigger("Win");
     }
 
