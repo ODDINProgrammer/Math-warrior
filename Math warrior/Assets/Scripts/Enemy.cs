@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [Header("Enemy settings")]
     [SerializeField] internal int _maxHP;
     internal int _currentHP;
+    [SerializeField] private bool _canAttack = false;
 
     [SerializeField] internal int _damage;
 
@@ -18,10 +19,7 @@ public class Enemy : MonoBehaviour
     [Header("Animator")]
     [SerializeField] private Animator _animator;
 
-    private void Start()
-    {
-        _currentHP = _maxHP;
-    }
+
 
     public void ReceiveDamage(int _value)
     {
@@ -33,14 +31,33 @@ public class Enemy : MonoBehaviour
         {
             _gameManager.EndBattle();
             Invoke("DelayedDestroy", 0.2f);
+            return;
         }
-        else
-            _gameManager.GetComponent<UI_Handler>().PlayQuestionUIAnimation();
 
+        if (_canAttack)
+        {
+            Invoke("AttackPlayer", 0.5f);
+            return;
+        }
+        PlayQuestAnimation();
+    }
+
+    public void PlayQuestAnimation()
+    {
+        _gameManager.GetComponent<UI_Handler>().PlayQuestionUIAnimation();
+    }
+
+    private void Start()
+    {
+        _currentHP = _maxHP;
     }
 
     private void DelayedDestroy()
     {
         Destroy(gameObject);
+    }
+    private void AttackPlayer()
+    {
+        _animator.SetTrigger("Attack");
     }
 }

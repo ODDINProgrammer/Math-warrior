@@ -41,4 +41,22 @@ public class GameManager : MonoBehaviour
 
         _player.PlayAttackAnimation();
     }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    public void ChangeGamePauseState()
+    {
+        //Pause
+        
+        if (Time.timeScale != 0)
+        {
+            Time.timeScale = 0;
+            return;
+        }
+        //Unpause
+        Time.timeScale = 1;
+    }
 }
